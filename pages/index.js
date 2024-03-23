@@ -3,13 +3,13 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import pool from '../lib/db';  
+import pool from '@/lib/db';  
 
 //index.js
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+// import { useEffect, useState } from 'react';
+// import { useRouter } from 'next/router';
 
-//pool is the database name
+  //pool is the database name
   // Use the `pool` object to query your database
   // Example: const result = await pool.query('SELECT * FROM your_table');
 
