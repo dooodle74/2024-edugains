@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import pool from '@/lib/db';  
-import { createTable } from '../lib/setupdb.js';
+import createTable from '@/lib/setupdb.js';
 
 //index.js
 import { useEffect, useState } from 'react';
@@ -14,7 +14,7 @@ import { useRouter } from 'next/router';
 
 
 const IndexPage = () => {
-  createTable()
+  <createTable />
   // Simulated authentication status (replace with your actual authentication logic)
   const isLoggedIn = true; // Assume user is logged in
   const isAdmin = true; // Assume user is an admin
