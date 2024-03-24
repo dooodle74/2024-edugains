@@ -1,16 +1,19 @@
-// components/RegisterForm.js
 import { useState } from 'react';
-import User from '../models/User'; // Import the User model
+import { useRouter } from 'next/router'; // Import useRouter hook
+
+import User from '@/models/User'; // Import the User model
 
 const RegisterForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isinstructor, setisinstructor] = useState(false); // Default to false
+  const [isinstructor, setIsInstructor] = useState(false); // Default to false
+  const [error, setError] = useState(null); // State to hold error message
+  const router = useRouter(); // Initialize useRouter hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newUser = new User(isinstructor, username, password);
-    
+
     try {
       const response = await fetch('/api/register', {
         method: 'POST',
@@ -19,12 +22,14 @@ const RegisterForm = () => {
         },
         body: JSON.stringify(newUser),
       });
-      
+
       if (response.ok) {
         // Redirect to login page after successful registration
-        router.push('/login');
+        router.push('/login'); // Redirect to /login route
       } else {
-        throw new Error('Failed to register user');
+        // Display error message if registration fails
+        const data = await response.json();
+        setError(data.error);
       }
     } catch (error) {
       console.error('Error registering user:', error.message);
@@ -33,6 +38,7 @@ const RegisterForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message if present */}
       <div>
         <label htmlFor="username">Username:</label>
         <input
@@ -58,7 +64,7 @@ const RegisterForm = () => {
           <input
             type="checkbox"
             checked={isinstructor}
-            onChange={(e) => setisinstructor(e.target.checked)}
+            onChange={(e) => setIsInstructor(e.target.checked)}
           />
           Instructor
         </label>
