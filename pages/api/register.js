@@ -1,5 +1,5 @@
 // pages/api/register.js
-import pool from '@/lib/db.js'; // Import the database connection
+import pool from '@/lib/db.jsy'; // Import the database connection
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
