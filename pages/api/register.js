@@ -1,15 +1,15 @@
 // pages/api/register.js
-import pool from '@/lib/db.jsy'; // Import the database connection
+import pool from '@/lib/db.js'; // Import the database connection
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { isInstructor, username, password } = req.body;
+    const { isinstructor, username, password } = req.body;
 
     try {
       const client = await pool.connect();
       const result = await client.query(
-        'INSERT INTO users (is_instructor, username, password) VALUES ($1, $2, $3) RETURNING *',
-        [isInstructor, username, password]
+        'INSERT INTO users (username, password, isinstructor) VALUES ($1, $2, $3) RETURNING *',
+        [username, password, isinstructor]
       );
       client.release(); // Release the client back to the pool
       res.status(201).json({ user: result.rows[0] });

@@ -1,6 +1,6 @@
 class User {
-    constructor(isInstructor, username, password, XP = 0) {
-      this.isInstructor = isInstructor;
+    constructor(isinstructor, username, password, XP = 0) {
+      this.isinstructor = isinstructor;
       this.username = username;
       this.password = password;
       this.XP = XP;
@@ -13,7 +13,7 @@ class User {
   
     // Method to increment XP (only available for regular users)
     incrementXP(amount) {
-      if (!this.isInstructor) {
+      if (!this.isinstructor) {
         this.XP += amount;
       } else {
         console.log('Only regular users can earn XP.');
