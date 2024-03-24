@@ -5,11 +5,11 @@ import User from '../models/User'; // Import the User model
 const RegisterForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isInstructor, setIsInstructor] = useState(false); // Default to false
+  const [isinstructor, setisinstructor] = useState(false); // Default to false
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newUser = new User(isInstructor, username, password);
+    const newUser = new User(isinstructor, username, password);
     
     try {
       const response = await fetch('/api/register', {
@@ -57,8 +57,8 @@ const RegisterForm = () => {
         <label>
           <input
             type="checkbox"
-            checked={isInstructor}
-            onChange={(e) => setIsInstructor(e.target.checked)}
+            checked={isinstructor}
+            onChange={(e) => setisinstructor(e.target.checked)}
           />
           Instructor
         </label>
